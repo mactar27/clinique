@@ -58,8 +58,8 @@ export default function RootLayout({
   children: React.ReactNode
 }>) {
   return (
-    <html lang="fr" className={`${inter.variable} ${poppins.variable} bg-background`}>
-      <body className="font-sans antialiased">
+    <html lang="fr" className={`${inter.variable} ${poppins.variable} bg-background w-full max-w-[100vw] overflow-x-hidden`}>
+      <body className="font-sans antialiased w-full max-w-[100vw] overflow-x-hidden">
         <LanguageProvider>{children}</LanguageProvider>
       </body>
     </html>
