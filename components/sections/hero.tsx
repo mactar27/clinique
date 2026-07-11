@@ -24,7 +24,7 @@ export function Hero() {
               Clinique médicale à Rufisque
             </span>
             
-            <h1 className="text-balance font-heading text-5xl font-extrabold leading-[1.05] text-[#126b43] md:text-6xl lg:text-[4.5rem]">
+            <h1 className="text-balance font-heading text-[2.5rem] sm:text-5xl font-extrabold leading-[1.1] text-[#126b43] md:text-6xl lg:text-[4.5rem]">
               Votre santé, entre de bonnes mains
             </h1>
             
@@ -48,8 +48,8 @@ export function Hero() {
               Route des HLM, camp Xavier Lelong, Cité millionnaire, Rufisque
             </div>
 
-            {/* Features Row - Single Line */}
-            <div className="mt-6 flex flex-nowrap overflow-hidden rounded-2xl bg-white border border-border/50 shadow-sm p-4 w-full justify-between gap-4">
+            {/* Features Row */}
+            <div className="mt-6 grid grid-cols-2 gap-4 sm:flex sm:flex-nowrap sm:justify-between rounded-2xl bg-white border border-border/50 shadow-sm p-4 w-full">
               <div className="flex items-center gap-2">
                 <div className="flex size-8 shrink-0 items-center justify-center rounded-full text-[#126b43]">
                   <ShieldCheck className="size-5" />
@@ -103,33 +103,33 @@ export function Hero() {
             </div>
             
             {/* Floating Stats Card */}
-            <div className="absolute bottom-[-2rem] left-0 right-0 mx-auto w-[95%] lg:w-full lg:left-[-1.5rem] lg:right-[-1.5rem] rounded-2xl bg-white py-4 shadow-xl border border-border/50 z-20">
-              <div className="flex flex-nowrap items-center justify-evenly divide-x divide-border">
+            <div className="absolute bottom-[-4rem] sm:bottom-[-2rem] left-0 right-0 mx-auto w-[95%] lg:w-full lg:left-[-1.5rem] lg:right-[-1.5rem] rounded-2xl bg-white py-4 shadow-xl border border-border/50 z-20">
+              <div className="grid grid-cols-3 divide-x divide-border">
                 <div className="flex flex-col md:flex-row items-center gap-2 px-2 text-center md:text-left">
-                  <div className="text-[#126b43] bg-green-50 p-2 rounded-full">
+                  <div className="text-[#126b43] bg-green-50 p-2 rounded-full hidden sm:block">
                     <Users className="size-6" strokeWidth={2} />
                   </div>
                   <div>
-                    <div className="text-lg md:text-xl font-extrabold text-foreground">+10 000</div>
-                    <div className="text-xs text-muted-foreground">Patients accompagnés</div>
+                    <div className="text-base sm:text-lg md:text-xl font-extrabold text-foreground">+10k</div>
+                    <div className="text-[10px] sm:text-xs text-muted-foreground leading-tight">Patients<br className="sm:hidden" /> accompagnés</div>
                   </div>
                 </div>
                 <div className="flex flex-col md:flex-row items-center gap-2 px-2 text-center md:text-left">
-                  <div className="text-[#126b43] bg-green-50 p-2 rounded-full">
+                  <div className="text-[#126b43] bg-green-50 p-2 rounded-full hidden sm:block">
                     <ShieldCheck className="size-6" strokeWidth={2} />
                   </div>
                   <div>
-                    <div className="text-lg md:text-xl font-extrabold text-foreground">20+</div>
-                    <div className="text-xs text-muted-foreground">Spécialités médicales</div>
+                    <div className="text-base sm:text-lg md:text-xl font-extrabold text-foreground">20+</div>
+                    <div className="text-[10px] sm:text-xs text-muted-foreground leading-tight">Spécialités<br className="sm:hidden" /> médicales</div>
                   </div>
                 </div>
                 <div className="flex flex-col md:flex-row items-center gap-2 px-2 text-center md:text-left">
-                  <div className="text-[#126b43] bg-green-50 p-2 rounded-full">
+                  <div className="text-[#126b43] bg-green-50 p-2 rounded-full hidden sm:block">
                     <HeartPulse className="size-6" strokeWidth={2} />
                   </div>
                   <div>
-                    <div className="text-lg md:text-xl font-extrabold text-foreground">7j/7</div>
-                    <div className="text-xs text-muted-foreground">À votre service</div>
+                    <div className="text-base sm:text-lg md:text-xl font-extrabold text-foreground">7j/7</div>
+                    <div className="text-[10px] sm:text-xs text-muted-foreground leading-tight">À votre<br className="sm:hidden" /> service</div>
                   </div>
                 </div>
               </div>
