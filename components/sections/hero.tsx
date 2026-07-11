@@ -7,7 +7,7 @@ import { Button } from "@/components/ui/button"
 
 export function Hero() {
   return (
-    <section className="relative w-full bg-[#fcfdfc] pt-16 pb-8">
+    <section className="relative w-full bg-[#fcfdfc] pt-16 pb-8 overflow-hidden">
       {/* Decorative pattern (subtle dotted circle) */}
       <div className="absolute top-0 right-1/4 opacity-10 pointer-events-none -z-10">
         <svg width="400" height="400" viewBox="0 0 400 400" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -151,9 +151,9 @@ export function Hero() {
             <p className="text-emerald-50 text-base max-w-md md:border-l border-white/20 md:pl-6 hidden lg:block">
               Notre équipe est disponible 24h/24 et 7j/7 pour répondre à toutes vos urgences.
             </p>
-            <Button render={<a href="tel:+221338360533" />} size="lg" className="gap-2 bg-[#f04f4f] text-white hover:bg-red-600 rounded-full px-8 py-7 text-lg font-semibold shadow-md whitespace-nowrap">
-              <PhoneCall className="size-5" />
-              Urgences : +221 33 836 05 33
+            <Button render={<a href="tel:+221338360533" />} size="lg" className="gap-2 bg-[#f04f4f] text-white hover:bg-red-600 rounded-full px-4 sm:px-8 py-6 sm:py-7 text-sm sm:text-lg font-semibold shadow-md w-full sm:w-auto h-auto">
+              <PhoneCall className="size-4 sm:size-5 shrink-0" />
+              <span>Urgences : +221 33 836 05 33</span>
             </Button>
           </div>
         </div>
