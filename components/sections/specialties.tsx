@@ -62,7 +62,7 @@ export function Specialties() {
         </div>
 
         {/* Grid / Mobile Carousel */}
-        <ul className="mt-12 flex overflow-x-auto snap-x snap-mandatory gap-4 pb-8 sm:grid sm:gap-6 sm:grid-cols-2 lg:grid-cols-4 sm:overflow-visible sm:snap-none [&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none]">
+        <ul className="mt-12 flex w-full max-w-full overflow-x-auto snap-x snap-mandatory gap-4 pb-8 sm:grid sm:gap-6 sm:grid-cols-2 lg:grid-cols-4 sm:overflow-visible sm:snap-none [&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none]">
           {specialties.slice(0, 12).map((s) => {
             const Icon = icons[s.slug] ?? Stethoscope
             return (

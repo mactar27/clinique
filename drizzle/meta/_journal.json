@@ -1,0 +1,13 @@
+{
+  "version": "7",
+  "dialect": "mysql",
+  "entries": [
+    {
+      "idx": 0,
+      "version": "5",
+      "when": 1783810853022,
+      "tag": "0000_curly_stranger",
+      "breakpoints": true
+    }
+  ]
+}

@@ -1,6 +1,8 @@
 import type { Metadata, Viewport } from "next"
 import { Inter, Poppins } from "next/font/google"
+import { Toaster } from "@/components/ui/sonner"
 import { LanguageProvider } from "@/components/language-provider"
+import { WhatsAppWidget } from "@/components/whatsapp-widget"
 import "./globals.css"
 
 const inter = Inter({
@@ -61,7 +63,10 @@ export default function RootLayout({
   return (
     <html lang="fr" className={`${inter.variable} ${poppins.variable} bg-background w-full max-w-[100vw] overflow-x-hidden`}>
       <body className="font-sans antialiased w-full max-w-[100vw] overflow-x-hidden">
-        <LanguageProvider>{children}</LanguageProvider>
+        <LanguageProvider>
+          {children}
+          <WhatsAppWidget />
+        </LanguageProvider>
       </body>
     </html>
   )

@@ -21,3 +21,46 @@ export const appointments = mysqlTable("appointments", {
 
 export type Appointment = typeof appointments.$inferSelect
 export type NewAppointment = typeof appointments.$inferInsert
+
+export const patients = mysqlTable("patients", {
+  id: varchar("id", { length: 36 })
+    .primaryKey()
+    .$defaultFn(() => crypto.randomUUID()),
+  firstName: text("first_name").notNull(),
+  lastName: text("last_name").notNull(),
+  phone: text("phone").notNull(),
+  email: text("email"),
+  dateOfBirth: date("date_of_birth"),
+  patientCode: varchar("patient_code", { length: 10 }).notNull().unique(), // Code secret pour accéder aux résultats
+  createdAt: timestamp("created_at").notNull().defaultNow(),
+})
+
+export const testResults = mysqlTable("test_results", {
+  id: varchar("id", { length: 36 })
+    .primaryKey()
+    .$defaultFn(() => crypto.randomUUID()),
+  patientId: varchar("patient_id", { length: 36 }).notNull(),
+  testName: text("test_name").notNull(),
+  testDate: date("test_date").notNull(),
+  resultUrl: text("result_url").notNull(), // Lien vers le PDF
+  notes: text("notes"),
+  createdAt: timestamp("created_at").notNull().defaultNow(),
+})
+
+export const notifications = mysqlTable("notifications", {
+  id: varchar("id", { length: 36 })
+    .primaryKey()
+    .$defaultFn(() => crypto.randomUUID()),
+  appointmentId: varchar("appointment_id", { length: 36 }).notNull(),
+  type: varchar("type", { length: 20 }).notNull(), // 'SMS' ou 'WHATSAPP'
+  message: text("message").notNull(),
+  status: varchar("status", { length: 20 }).notNull().default("sent"),
+  createdAt: timestamp("created_at").notNull().defaultNow(),
+})
+
+export type Patient = typeof patients.$inferSelect
+export type NewPatient = typeof patients.$inferInsert
+export type TestResult = typeof testResults.$inferSelect
+export type NewTestResult = typeof testResults.$inferInsert
+export type Notification = typeof notifications.$inferSelect
+export type NewNotification = typeof notifications.$inferInsert
