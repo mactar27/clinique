@@ -7,7 +7,7 @@ import { Button } from "@/components/ui/button"
 
 export function Hero() {
   return (
-    <section className="relative w-full bg-[#fcfdfc] pt-16 pb-8 overflow-hidden">
+    <section className="relative w-full bg-[#fcfdfc] pt-16 pb-8">
       {/* Decorative pattern (subtle dotted circle) */}
       <div className="absolute top-0 right-1/4 opacity-10 pointer-events-none -z-10 max-w-full overflow-hidden">
         <svg className="w-[400px] max-w-full h-auto" viewBox="0 0 400 400" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -24,7 +24,7 @@ export function Hero() {
               Clinique médicale à Rufisque
             </span>
             
-            <h1 className="text-balance font-heading text-[2.5rem] sm:text-5xl font-extrabold leading-[1.1] text-[#126b43] md:text-6xl lg:text-[4.5rem]">
+            <h1 className="text-balance font-heading text-4xl sm:text-5xl font-extrabold leading-[1.1] text-[#126b43] md:text-6xl lg:text-[4.5rem]">
               Votre santé, entre de bonnes mains
             </h1>
             
@@ -97,7 +97,7 @@ export function Hero() {
                 alt="Médecin de la Clinique MAIMOUNA en consultation avec un patient"
                 width={800}
                 height={600}
-                className="h-[550px] w-full object-cover"
+                className="h-[350px] sm:h-[450px] lg:h-[550px] w-full object-cover"
                 priority
               />
             </div>

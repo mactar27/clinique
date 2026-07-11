@@ -24,7 +24,7 @@ export function About() {
                 alt="Bâtiment de la Clinique MAIMOUNA"
                 width={800}
                 height={600}
-                className="h-[550px] w-full object-cover"
+                className="h-[350px] sm:h-[450px] lg:h-[550px] w-full object-cover"
               />
             </div>
             
