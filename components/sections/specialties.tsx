@@ -61,12 +61,12 @@ export function Specialties() {
           <p className="text-pretty text-base text-muted-foreground">Une équipe complète de spécialistes à votre service.</p>
         </div>
 
-        {/* Grid */}
-        <ul className="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
+        {/* Grid / Mobile Carousel */}
+        <ul className="mt-12 flex overflow-x-auto snap-x snap-mandatory gap-4 pb-8 sm:grid sm:gap-6 sm:grid-cols-2 lg:grid-cols-4 sm:overflow-visible sm:snap-none [&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none]">
           {specialties.slice(0, 12).map((s) => {
             const Icon = icons[s.slug] ?? Stethoscope
             return (
-              <li key={s.slug}>
+              <li key={s.slug} className="w-[80vw] max-w-[300px] shrink-0 snap-center sm:w-auto sm:max-w-none">
                 <div className="group flex h-full flex-col items-center text-center gap-4 rounded-3xl border border-border/40 bg-white p-6 shadow-sm transition-all hover:border-[#126b43]/30 hover:shadow-md">
                   <div className="flex size-16 shrink-0 items-center justify-center rounded-full bg-green-50 text-[#126b43]">
                     <Icon className="size-8" strokeWidth={1.5} aria-hidden="true" />
