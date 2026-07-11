@@ -1,0 +1,18 @@
+[
+  {
+    "specialtySlug": "diabetologie",
+    "specialtyLabel": "Diabétologue / Fajkatu sukkar",
+    "reason": "Suivi du diabète",
+    "practitioner": "Diabétologue de la CLINIQUE MAIMOUNA",
+    "patientFirstName": "Amadou Mactar",
+    "patientLastName": "Ndiaye",
+    "patientPhone": "+221 77 351 91 28",
+    "patientEmail": null,
+    "preferredDate": "0026-10-27",
+    "preferredTime": "08:00",
+    "notes": null,
+    "id": "28f5f515-61a9-45e8-b23a-0be55e1cc7f4",
+    "createdAt": "2026-07-11T15:16:41.221Z",
+    "status": "rescheduled"
+  }
+]
