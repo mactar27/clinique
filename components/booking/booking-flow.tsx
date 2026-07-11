@@ -122,22 +122,22 @@ export function BookingFlow() {
 
   if (done) {
     return (
-      <div className="mx-auto max-w-lg rounded-3xl border border-border bg-card p-8 text-center shadow-sm">
-        <div className="mx-auto flex size-14 items-center justify-center rounded-full bg-primary/10 text-primary">
-          <Check className="size-7" aria-hidden="true" />
+      <div className="mx-auto max-w-lg rounded-[2.5rem] border border-border/40 bg-white p-10 text-center shadow-lg">
+        <div className="mx-auto flex size-20 items-center justify-center rounded-full bg-green-50 text-[#126b43]">
+          <Check className="size-10" strokeWidth={3} aria-hidden="true" />
         </div>
-        <h2 className="mt-5 font-heading text-2xl font-bold text-foreground">{t("successTitle")}</h2>
-        <p className="mt-3 leading-relaxed text-muted-foreground">{t("successText")}</p>
-        <div className="mt-4 rounded-xl bg-green-50 p-4 border border-green-100 dark:bg-green-950/30 dark:border-green-900/50">
-          <p className="text-sm font-medium text-green-800 dark:text-green-300">
+        <h2 className="mt-6 font-heading text-3xl font-extrabold text-[#1a1a1a]">{t("successTitle")}</h2>
+        <p className="mt-4 text-lg leading-relaxed text-muted-foreground">{t("successText")}</p>
+        <div className="mt-6 rounded-2xl bg-green-50 p-5 border border-green-100">
+          <p className="text-sm font-semibold text-[#126b43]">
             📱 Vous recevrez votre confirmation par WhatsApp dans quelques instants.
           </p>
         </div>
-        <div className="mt-6 flex flex-wrap justify-center gap-3">
-          <Button onClick={reset} variant="outline">
+        <div className="mt-8 flex flex-col sm:flex-row justify-center gap-4">
+          <Button onClick={reset} variant="outline" className="rounded-xl py-6 border-border/80 text-foreground font-semibold">
             {t("newBooking")}
           </Button>
-          <Button asChild>
+          <Button asChild className="rounded-xl py-6 bg-[#126b43] text-white hover:bg-[#0c4e30] font-semibold shadow-md">
             <Link href="/">{t("home")}</Link>
           </Button>
         </div>
@@ -158,10 +158,10 @@ export function BookingFlow() {
               <div className="flex items-center gap-2">
                 <span
                   className={cn(
-                    "flex size-8 shrink-0 items-center justify-center rounded-full border text-sm font-semibold transition-colors",
-                    active && "border-primary bg-primary text-primary-foreground",
-                    complete && "border-primary bg-primary/10 text-primary",
-                    !active && !complete && "border-border bg-card text-muted-foreground",
+                    "flex size-10 shrink-0 items-center justify-center rounded-full border-2 text-sm font-bold transition-colors",
+                    active && "border-[#126b43] bg-[#126b43] text-white",
+                    complete && "border-[#126b43] bg-green-50 text-[#126b43]",
+                    !active && !complete && "border-border/60 bg-white text-muted-foreground",
                   )}
                 >
                   {complete ? <Check className="size-4" aria-hidden="true" /> : n}
@@ -181,7 +181,7 @@ export function BookingFlow() {
         })}
       </ol>
 
-      <div className="rounded-3xl border border-border bg-card p-6 shadow-sm sm:p-8">
+      <div className="rounded-[2.5rem] border border-border/40 bg-white p-8 shadow-sm sm:p-10">
         {/* Step 1 — Specialty + reason */}
         {step === 1 && (
           <div className="flex flex-col gap-6">
@@ -198,20 +198,25 @@ export function BookingFlow() {
                       setReason("")
                     }}
                     className={cn(
-                      "flex w-full items-start gap-3 rounded-xl border p-3 text-left transition-colors",
+                      "flex w-full items-center gap-4 rounded-2xl border-2 p-4 text-left transition-all",
                       specialtySlug === s.slug
-                        ? "border-primary bg-primary/5"
-                        : "border-border bg-card hover:border-primary/40",
+                        ? "border-[#126b43] bg-green-50/50 shadow-sm scale-[1.02]"
+                        : "border-border/40 bg-white hover:border-[#126b43]/30 hover:bg-slate-50",
                     )}
                     aria-pressed={specialtySlug === s.slug}
                   >
-                    <Stethoscope className="mt-0.5 size-4 shrink-0 text-primary" aria-hidden="true" />
-                    <span>
-                      <span className="block text-sm font-semibold text-foreground">
+                    <div className={cn(
+                      "flex size-12 items-center justify-center rounded-full transition-colors",
+                      specialtySlug === s.slug ? "bg-[#126b43] text-white" : "bg-green-50 text-[#126b43]"
+                    )}>
+                      <Stethoscope className="size-6" strokeWidth={1.5} aria-hidden="true" />
+                    </div>
+                    <div>
+                      <span className="block text-base font-bold text-foreground">
                         {lang === "fr" ? s.fr : s.wo}
                       </span>
-                      <span className="block text-xs text-muted-foreground">{lang === "fr" ? s.wo : s.fr}</span>
-                    </span>
+                      <span className="block text-sm text-muted-foreground mt-0.5">{lang === "fr" ? s.wo : s.fr}</span>
+                    </div>
                   </button>
                 </li>
               ))}
@@ -235,10 +240,10 @@ export function BookingFlow() {
               </div>
             )}
 
-            <div className="flex justify-end">
-              <Button onClick={goNext} disabled={!canNextFromStep1} className="gap-1.5">
+            <div className="flex justify-end mt-6">
+              <Button onClick={goNext} disabled={!canNextFromStep1} className="gap-2 rounded-xl py-6 px-8 bg-[#126b43] text-white hover:bg-[#0c4e30] font-semibold shadow-md">
                 {t("next")}
-                <ChevronRight className="size-4" aria-hidden="true" />
+                <ChevronRight className="size-5" aria-hidden="true" />
               </Button>
             </div>
           </div>
@@ -247,9 +252,9 @@ export function BookingFlow() {
         {/* Step 2 — Practitioner + date/time */}
         {step === 2 && specialty && (
           <div className="flex flex-col gap-6">
-            <div className="flex items-start gap-3 rounded-xl border border-border bg-secondary/40 p-4">
-              <span className="flex size-11 shrink-0 items-center justify-center rounded-lg bg-primary/10 text-primary">
-                <UserRound className="size-5" aria-hidden="true" />
+            <div className="flex items-start gap-4 rounded-2xl border border-border/40 bg-green-50/30 p-5">
+              <span className="flex size-14 shrink-0 items-center justify-center rounded-xl bg-green-50 text-[#126b43]">
+                <UserRound className="size-6" strokeWidth={1.5} aria-hidden="true" />
               </span>
               <div>
                 <div className="text-xs font-medium uppercase tracking-wide text-muted-foreground">
@@ -306,14 +311,14 @@ export function BookingFlow() {
               </div>
             </div>
 
-            <div className="flex justify-between">
-              <Button onClick={goBack} variant="outline" className="gap-1.5">
-                <ChevronLeft className="size-4" aria-hidden="true" />
+            <div className="flex justify-between mt-6">
+              <Button onClick={goBack} variant="outline" className="gap-2 rounded-xl py-6 px-6 border-border/80 text-foreground font-semibold">
+                <ChevronLeft className="size-5" aria-hidden="true" />
                 {t("back")}
               </Button>
-              <Button onClick={goNext} disabled={!canNextFromStep2} className="gap-1.5">
+              <Button onClick={goNext} disabled={!canNextFromStep2} className="gap-2 rounded-xl py-6 px-8 bg-[#126b43] text-white hover:bg-[#0c4e30] font-semibold shadow-md">
                 {t("next")}
-                <ChevronRight className="size-4" aria-hidden="true" />
+                <ChevronRight className="size-5" aria-hidden="true" />
               </Button>
             </div>
           </div>
@@ -362,22 +367,22 @@ export function BookingFlow() {
             </div>
 
             {/* Summary */}
-            <div className="rounded-xl border border-border bg-secondary/40 p-4">
-              <h3 className="mb-3 font-heading text-sm font-semibold text-foreground">{t("summary")}</h3>
-              <dl className="grid gap-2 text-sm">
+            <div className="rounded-2xl border border-border/40 bg-green-50/30 p-6">
+              <h3 className="mb-4 font-heading text-lg font-bold text-[#1a1a1a]">{t("summary")}</h3>
+              <dl className="grid gap-3 text-sm">
                 <div className="flex justify-between gap-4">
                   <dt className="text-muted-foreground">{t("step1")}</dt>
-                  <dd className="text-right font-medium text-foreground">
+                  <dd className="text-right font-semibold text-foreground">
                     {lang === "fr" ? specialty.fr : specialty.wo}
                   </dd>
                 </div>
                 <div className="flex justify-between gap-4">
                   <dt className="text-muted-foreground">{t("chooseReason")}</dt>
-                  <dd className="text-right font-medium text-foreground">{reason}</dd>
+                  <dd className="text-right font-semibold text-foreground">{reason}</dd>
                 </div>
                 <div className="flex justify-between gap-4">
                   <dt className="text-muted-foreground">{t("date")}</dt>
-                  <dd className="text-right font-medium text-foreground">
+                  <dd className="text-right font-semibold text-foreground">
                     {date} — {time}
                   </dd>
                 </div>
@@ -390,20 +395,20 @@ export function BookingFlow() {
               </p>
             )}
 
-            <div className="flex justify-between">
-              <Button onClick={goBack} variant="outline" disabled={pending} className="gap-1.5">
-                <ChevronLeft className="size-4" aria-hidden="true" />
+            <div className="flex justify-between mt-6">
+              <Button onClick={goBack} variant="outline" disabled={pending} className="gap-2 rounded-xl py-6 px-6 border-border/80 text-foreground font-semibold">
+                <ChevronLeft className="size-5" aria-hidden="true" />
                 {t("back")}
               </Button>
-              <Button onClick={handleSubmit} disabled={!canSubmit || pending} className="gap-1.5">
+              <Button onClick={handleSubmit} disabled={!canSubmit || pending} className="gap-2 rounded-xl py-6 px-8 bg-[#126b43] text-white hover:bg-[#0c4e30] font-semibold shadow-md">
                 {pending ? (
                   <>
-                    <Loader2 className="size-4 animate-spin" aria-hidden="true" />
+                    <Loader2 className="size-5 animate-spin" aria-hidden="true" />
                     {t("submitting")}
                   </>
                 ) : (
                   <>
-                    <Check className="size-4" aria-hidden="true" />
+                    <Check className="size-5" aria-hidden="true" />
                     {t("confirm")}
                   </>
                 )}

@@ -17,10 +17,32 @@ const poppins = Poppins({
 })
 
 export const metadata: Metadata = {
-  title: "Clinique MAIMOUNA — Clinique médicale à Rufisque",
+  title: "Clinique MAIMOUNA — Votre santé, notre priorité au quotidien",
   description:
-    "La Clinique MAIMOUNA à Rufisque propose consultations, spécialistes, hospitalisation, imagerie et laboratoire. Prenez rendez-vous en ligne. Faju ci Rufisque.",
+    "La Clinique MAIMOUNA à Rufisque propose des consultations, spécialistes, urgences 24/7, hospitalisation, imagerie et laboratoire. Prenez rendez-vous en ligne.",
   generator: "v0.app",
+  openGraph: {
+    title: "Clinique MAIMOUNA",
+    description: "Une équipe complète de spécialistes à votre service à Rufisque.",
+    url: "https://clinique-maimouna.vercel.app",
+    siteName: "Clinique MAIMOUNA",
+    images: [
+      {
+        url: "/images/clinic-hero.png",
+        width: 1200,
+        height: 630,
+        alt: "Clinique MAIMOUNA Accueil",
+      },
+    ],
+    locale: "fr_FR",
+    type: "website",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Clinique MAIMOUNA",
+    description: "Votre santé, notre priorité au quotidien.",
+    images: ["/images/clinic-hero.png"],
+  },
 }
 
 export const viewport: Viewport = {
