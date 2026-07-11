@@ -9,8 +9,8 @@ export function Hero() {
   return (
     <section className="relative w-full bg-[#fcfdfc] pt-16 pb-8 overflow-hidden">
       {/* Decorative pattern (subtle dotted circle) */}
-      <div className="absolute top-0 right-1/4 opacity-10 pointer-events-none -z-10">
-        <svg width="400" height="400" viewBox="0 0 400 400" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <div className="absolute top-0 right-1/4 opacity-10 pointer-events-none -z-10 max-w-full overflow-hidden">
+        <svg className="w-[400px] max-w-full h-auto" viewBox="0 0 400 400" fill="none" xmlns="http://www.w3.org/2000/svg">
           <circle cx="200" cy="200" r="199" stroke="#126b43" strokeWidth="2" strokeDasharray="4 12"/>
         </svg>
       </div>
@@ -43,9 +43,9 @@ export function Hero() {
               </Button>
             </div>
             
-            <div className="mt-4 inline-flex items-center gap-2 rounded-xl bg-secondary/50 px-4 py-3 text-sm text-muted-foreground w-fit">
-              <MapPin className="size-4 text-[#f04f4f]" aria-hidden="true" />
-              Route des HLM, camp Xavier Lelong, Cité millionnaire, Rufisque
+            <div className="mt-4 inline-flex items-center gap-2 rounded-xl bg-secondary/50 px-4 py-3 text-sm text-muted-foreground w-fit max-w-full">
+              <MapPin className="size-4 shrink-0 text-[#f04f4f]" aria-hidden="true" />
+              <span className="truncate whitespace-normal">Route des HLM, camp Xavier Lelong, Cité millionnaire, Rufisque</span>
             </div>
 
             {/* Features Row */}
