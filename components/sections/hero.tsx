@@ -138,7 +138,7 @@ export function Hero() {
         </div>
 
         {/* Bottom Banner */}
-        <div className="mt-32 mb-10 w-full rounded-2xl bg-[#0e5c3e] px-8 py-8 shadow-xl">
+        <div className="mt-32 mb-10 w-full rounded-2xl bg-[#0e5c3e] px-4 sm:px-8 py-6 sm:py-8 shadow-xl overflow-hidden">
           <div className="flex flex-col md:flex-row items-center justify-between gap-6">
             <div className="flex items-center gap-4">
               <div className="flex size-14 items-center justify-center rounded-full border border-white/20 text-white">
