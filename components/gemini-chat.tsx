@@ -96,7 +96,7 @@ export function GeminiChat() {
                   : "bg-white text-slate-800 border border-slate-100 rounded-bl-sm"
               }`}
             >
-              {m.content}
+              {m.content || (m.parts && m.parts.map((p, i) => p.type === 'text' ? p.text : '').join('')) || JSON.stringify(m)}
             </div>
           </div>
         ))}
