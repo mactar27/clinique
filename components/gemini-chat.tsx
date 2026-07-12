@@ -6,13 +6,23 @@ import { MessageCircle, X, Send, Bot, Sparkles } from "lucide-react"
 
 export function GeminiChat() {
   const [isOpen, setIsOpen] = useState(false)
-  const { messages, input, setInput, handleSubmit, isLoading, error } = useChat()
+  const [input, setInput] = useState("")
+  const { messages, sendMessage, status, error } = useChat()
   const messagesEndRef = useRef<HTMLDivElement>(null)
+
+  const isLoading = status === "submitted" || status === "streaming"
 
   // Auto-scroll to bottom
   useEffect(() => {
     messagesEndRef.current?.scrollIntoView({ behavior: "smooth" })
   }, [messages, isLoading])
+
+  const onSubmit = (e: React.FormEvent) => {
+    e.preventDefault()
+    if (!input.trim()) return
+    sendMessage({ content: input, role: "user" })
+    setInput("")
+  }
 
   if (!isOpen) {
     return (
@@ -105,7 +115,7 @@ export function GeminiChat() {
 
       {/* Input */}
       <form
-        onSubmit={handleSubmit}
+        onSubmit={onSubmit}
         className="bg-white p-4 shadow-[0_-10px_40px_rgba(0,0,0,0.05)] border-t border-slate-100"
       >
         <div className="flex items-center gap-2">
@@ -114,10 +124,11 @@ export function GeminiChat() {
             onChange={(e) => setInput(e.target.value)}
             placeholder="Écrivez votre message..."
             className="flex-1 rounded-full border border-slate-200 bg-slate-50 py-3 pl-5 pr-4 text-[15px] text-slate-800 placeholder:text-slate-400 focus:bg-white focus:outline-none focus:ring-2 focus:ring-[#126b43]/30 transition-all shadow-inner"
+            disabled={isLoading}
           />
           <button
             type="submit"
-            disabled={!(input || "").trim() || isLoading}
+            disabled={!input.trim() || isLoading}
             className="flex h-11 w-11 shrink-0 items-center justify-center rounded-full bg-[#126b43] text-white shadow-md disabled:opacity-40 disabled:shadow-none hover:bg-[#0c4e30] transition-all hover:scale-105"
           >
             <Send className="h-4 w-4 ml-0.5" />
