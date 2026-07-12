@@ -102,17 +102,17 @@ export function GeminiChat() {
         onSubmit={handleSubmit}
         className="bg-white p-4 shadow-[0_-10px_40px_rgba(0,0,0,0.05)] border-t border-slate-100"
       >
-        <div className="relative flex items-center">
+        <div className="flex items-center gap-2">
           <input
             value={input}
             onChange={handleInputChange}
             placeholder="Écrivez votre message..."
-            className="w-full rounded-full border-0 bg-slate-100 py-3.5 pl-5 pr-14 text-[15px] text-slate-800 placeholder:text-slate-400 focus:bg-white focus:outline-none focus:ring-2 focus:ring-[#126b43]/30 transition-all shadow-inner"
+            className="flex-1 rounded-full border border-slate-200 bg-slate-50 py-3 pl-5 pr-4 text-[15px] text-slate-800 placeholder:text-slate-400 focus:bg-white focus:outline-none focus:ring-2 focus:ring-[#126b43]/30 transition-all shadow-inner"
           />
           <button
             type="submit"
             disabled={!(input || "").trim() || isLoading}
-            className="absolute right-1.5 flex h-10 w-10 items-center justify-center rounded-full bg-[#126b43] text-white shadow-md disabled:opacity-40 disabled:shadow-none hover:bg-[#0c4e30] transition-all hover:scale-105"
+            className="flex h-11 w-11 shrink-0 items-center justify-center rounded-full bg-[#126b43] text-white shadow-md disabled:opacity-40 disabled:shadow-none hover:bg-[#0c4e30] transition-all hover:scale-105"
           >
             <Send className="h-4 w-4 ml-0.5" />
           </button>
