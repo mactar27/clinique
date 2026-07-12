@@ -28,72 +28,74 @@ export function GeminiChat() {
     return (
       <button
         onClick={() => setIsOpen(true)}
-        className="fixed bottom-6 right-6 z-50 flex h-16 w-16 items-center justify-center rounded-full bg-gradient-to-tr from-[#0d5032] to-[#126b43] text-white shadow-2xl transition-all duration-300 hover:scale-110 hover:shadow-[#126b43]/50 focus:outline-none animate-in fade-in slide-in-from-bottom-5"
+        className="fixed bottom-6 right-6 z-50 flex h-16 w-16 items-center justify-center rounded-full bg-gradient-to-tr from-[#126b43] to-[#20c977] text-white shadow-[0_0_40px_rgba(32,201,119,0.4)] transition-all duration-500 hover:scale-110 hover:shadow-[0_0_60px_rgba(32,201,119,0.6)] focus:outline-none group"
         aria-label="Ouvrir le chat avec notre assistant"
       >
-        <MessageCircle className="h-8 w-8" />
+        <div className="absolute inset-0 rounded-full bg-white opacity-0 transition-opacity duration-300 group-hover:opacity-20"></div>
+        <MessageCircle className="h-8 w-8 relative z-10 transition-transform duration-300 group-hover:-rotate-12" />
         <span className="absolute right-0 top-0 flex h-4 w-4">
-          <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-red-400 opacity-75"></span>
-          <span className="relative inline-flex rounded-full h-4 w-4 bg-red-500 border-2 border-white"></span>
+          <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-300 opacity-75"></span>
+          <span className="relative inline-flex rounded-full h-4 w-4 bg-emerald-400 border-2 border-slate-900"></span>
         </span>
       </button>
     )
   }
 
   return (
-    <div className="fixed bottom-6 right-6 z-50 flex h-[550px] w-[90vw] flex-col overflow-hidden rounded-3xl border border-white/20 bg-white shadow-2xl shadow-[#126b43]/20 animate-in fade-in slide-in-from-bottom-10 sm:w-[400px] backdrop-blur-xl">
-      {/* Header avec Glassmorphism */}
-      <div className="relative flex items-center justify-between bg-gradient-to-r from-[#126b43] to-[#188a56] px-6 py-5 text-white">
-        <div className="absolute inset-0 bg-white/10 backdrop-blur-md"></div>
+    <div className="fixed bottom-6 right-6 z-50 flex h-[600px] w-[90vw] flex-col overflow-hidden rounded-[2rem] border border-white/10 bg-[#0b1121]/80 shadow-[0_0_80px_rgba(0,0,0,0.5)] backdrop-blur-3xl animate-in zoom-in-95 slide-in-from-bottom-10 sm:w-[420px] duration-300">
+      {/* Premium Header */}
+      <div className="relative flex items-center justify-between border-b border-white/10 bg-black/20 px-6 py-5">
+        <div className="absolute inset-0 bg-gradient-to-r from-[#126b43]/20 to-transparent"></div>
         <div className="relative z-10 flex items-center gap-4">
-          <div className="relative flex h-12 w-12 items-center justify-center rounded-full bg-white/20 shadow-inner">
-            <Bot className="h-7 w-7 text-white" />
-            <span className="absolute bottom-0 right-0 block h-3.5 w-3.5 rounded-full bg-green-400 ring-2 ring-[#126b43]" />
+          <div className="relative flex h-12 w-12 items-center justify-center rounded-full bg-gradient-to-br from-emerald-400/20 to-emerald-600/20 border border-emerald-500/30 shadow-[0_0_20px_rgba(16,185,129,0.2)]">
+            <Bot className="h-6 w-6 text-emerald-400" />
+            <span className="absolute bottom-0 right-0 block h-3.5 w-3.5 rounded-full bg-emerald-400 ring-2 ring-[#0b1121] shadow-[0_0_10px_rgba(52,211,153,0.8)]" />
           </div>
           <div>
-            <h3 className="text-lg font-bold tracking-wide">Maimouna IA</h3>
-            <p className="flex items-center gap-1 text-xs font-medium text-green-100">
+            <h3 className="text-lg font-bold tracking-wide text-white">Maimouna IA</h3>
+            <p className="flex items-center gap-1.5 text-xs font-medium text-emerald-300/80 uppercase tracking-wider">
               <Sparkles className="h-3 w-3" /> Assistant Médical
             </p>
           </div>
         </div>
         <button
           onClick={() => setIsOpen(false)}
-          className="relative z-10 rounded-full bg-white/10 p-2.5 transition-all hover:bg-white/30 hover:rotate-90"
+          className="relative z-10 rounded-full bg-white/5 p-2.5 text-slate-300 transition-all hover:bg-white/10 hover:text-white hover:rotate-90"
         >
           <X className="h-5 w-5" />
         </button>
       </div>
 
-      {/* Messages */}
-      <div className="flex-1 overflow-y-auto bg-slate-50/50 p-6 space-y-6">
+      {/* Messages Area */}
+      <div className="flex-1 overflow-y-auto p-6 space-y-6 scrollbar-thin scrollbar-thumb-white/10 scrollbar-track-transparent">
         {messages.length === 0 && (
-          <div className="mt-8 flex flex-col items-center justify-center space-y-4 text-center">
-            <div className="flex h-16 w-16 items-center justify-center rounded-full bg-[#126b43]/10 text-[#126b43]">
-              <Bot className="h-8 w-8" />
+          <div className="mt-12 flex flex-col items-center justify-center space-y-5 text-center animate-in fade-in duration-700">
+            <div className="flex h-20 w-20 items-center justify-center rounded-full bg-gradient-to-tr from-[#126b43]/20 to-emerald-400/20 border border-emerald-500/20 shadow-[0_0_40px_rgba(16,185,129,0.1)]">
+              <Bot className="h-10 w-10 text-emerald-400" />
             </div>
-            <p className="text-sm font-medium text-slate-500 max-w-[250px]">
-              Bonjour ! Je suis l'intelligence artificielle de la Clinique. Je peux vous renseigner sur nos horaires, nos médecins et nos spécialités.
+            <p className="text-sm font-medium text-slate-300 max-w-[260px] leading-relaxed">
+              Bonjour ! Je suis Maimouna, l'IA de la Clinique. Posez-moi vos questions, je suis à votre écoute 24h/24.
             </p>
           </div>
         )}
         
         {error && (
-          <div className="mt-2 p-3 text-sm text-red-600 bg-red-50 border border-red-200 rounded-xl">
-            Erreur: La clé API Gemini n'est pas configurée ou est invalide.
+          <div className="mt-2 p-4 text-sm text-red-200 bg-red-900/30 border border-red-500/30 rounded-2xl backdrop-blur-md flex items-center gap-3">
+            <div className="h-2 w-2 rounded-full bg-red-500 animate-pulse"></div>
+            Erreur: Impossible de contacter le serveur.
           </div>
         )}
         
         {messages.map((m) => (
           <div
             key={m.id}
-            className={`flex w-full ${m.role === "user" ? "justify-end" : "justify-start"}`}
+            className={`flex w-full animate-in slide-in-from-bottom-2 fade-in duration-300 ${m.role === "user" ? "justify-end" : "justify-start"}`}
           >
             <div
-              className={`max-w-[85%] rounded-3xl px-5 py-3 text-[15px] leading-relaxed shadow-sm ${
+              className={`max-w-[85%] rounded-[24px] px-5 py-3.5 text-[15px] leading-relaxed shadow-lg ${
                 m.role === "user"
-                  ? "bg-gradient-to-tr from-[#126b43] to-[#188a56] text-white rounded-br-sm"
-                  : "bg-white text-slate-800 border border-slate-100 rounded-bl-sm"
+                  ? "bg-gradient-to-tr from-[#126b43] to-[#20c977] text-white rounded-br-sm shadow-[0_10px_20px_rgba(18,107,67,0.2)]"
+                  : "bg-white/5 border border-white/10 text-slate-200 rounded-bl-sm backdrop-blur-md"
               }`}
             >
               {m.content || (m.parts && m.parts.map((p, i) => p.type === 'text' ? p.text : '').join('')) || JSON.stringify(m)}
@@ -102,34 +104,34 @@ export function GeminiChat() {
         ))}
 
         {isLoading && (
-          <div className="flex w-full justify-start">
-            <div className="max-w-[80%] rounded-3xl px-5 py-4 text-sm bg-white border border-slate-100 text-slate-800 rounded-bl-sm shadow-sm flex items-center gap-1.5">
-              <span className="h-2 w-2 rounded-full bg-[#126b43] animate-bounce"></span>
-              <span className="h-2 w-2 rounded-full bg-[#126b43] animate-bounce [animation-delay:0.2s]"></span>
-              <span className="h-2 w-2 rounded-full bg-[#126b43] animate-bounce [animation-delay:0.4s]"></span>
+          <div className="flex w-full justify-start animate-in fade-in zoom-in-95 duration-300">
+            <div className="max-w-[80%] rounded-[24px] px-5 py-4 text-sm bg-white/5 border border-white/10 text-slate-200 rounded-bl-sm backdrop-blur-md flex items-center gap-2">
+              <span className="h-1.5 w-1.5 rounded-full bg-emerald-400 animate-bounce"></span>
+              <span className="h-1.5 w-1.5 rounded-full bg-emerald-400 animate-bounce [animation-delay:0.15s]"></span>
+              <span className="h-1.5 w-1.5 rounded-full bg-emerald-400 animate-bounce [animation-delay:0.3s]"></span>
             </div>
           </div>
         )}
-        <div ref={messagesEndRef} />
+        <div ref={messagesEndRef} className="h-1" />
       </div>
 
-      {/* Input */}
+      {/* Input Area */}
       <form
         onSubmit={onSubmit}
-        className="bg-white p-4 shadow-[0_-10px_40px_rgba(0,0,0,0.05)] border-t border-slate-100"
+        className="bg-black/20 p-5 backdrop-blur-xl border-t border-white/10"
       >
-        <div className="flex items-center gap-2">
+        <div className="flex items-center gap-3 relative">
           <input
             value={input}
             onChange={(e) => setInput(e.target.value)}
             placeholder="Écrivez votre message..."
-            className="flex-1 rounded-full border border-slate-200 bg-slate-50 py-3 pl-5 pr-4 text-[15px] text-slate-800 placeholder:text-slate-400 focus:bg-white focus:outline-none focus:ring-2 focus:ring-[#126b43]/30 transition-all shadow-inner"
+            className="flex-1 rounded-full border border-white/10 bg-white/5 py-3.5 pl-6 pr-14 text-[15px] text-white placeholder:text-slate-400 focus:bg-white/10 focus:outline-none focus:ring-2 focus:ring-emerald-500/50 transition-all shadow-inner"
             disabled={isLoading}
           />
           <button
             type="submit"
             disabled={!input.trim() || isLoading}
-            className="flex h-11 w-11 shrink-0 items-center justify-center rounded-full bg-[#126b43] text-white shadow-md disabled:opacity-40 disabled:shadow-none hover:bg-[#0c4e30] transition-all hover:scale-105"
+            className="absolute right-1.5 flex h-10 w-10 items-center justify-center rounded-full bg-gradient-to-tr from-[#126b43] to-[#20c977] text-white shadow-lg disabled:opacity-30 disabled:scale-95 transition-all duration-300 hover:scale-105 hover:shadow-[0_0_20px_rgba(32,201,119,0.4)]"
           >
             <Send className="h-4 w-4 ml-0.5" />
           </button>
