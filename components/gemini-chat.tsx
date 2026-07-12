@@ -89,7 +89,7 @@ export function GeminiChat() {
         />
         <button
           type="submit"
-          disabled={!input.trim() || isLoading}
+          disabled={!(input || "").trim() || isLoading}
           className="flex h-10 w-10 items-center justify-center rounded-full bg-[#126b43] text-white disabled:opacity-50 hover:bg-[#0c4e30] transition-colors"
         >
           <Send className="h-4 w-4" />
