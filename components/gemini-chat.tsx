@@ -2,7 +2,7 @@
 
 import { useState, useEffect, useRef } from "react"
 import { useChat } from "@ai-sdk/react"
-import { MessageCircle, X, Send, Bot, Sparkles } from "lucide-react"
+import { Stethoscope, X, Send, Sparkles } from "lucide-react"
 
 export function GeminiChat() {
   const [isOpen, setIsOpen] = useState(false)
@@ -20,7 +20,7 @@ export function GeminiChat() {
   const onSubmit = (e: React.FormEvent) => {
     e.preventDefault()
     if (!input.trim()) return
-    sendMessage({ content: input, role: "user" })
+    sendMessage({ parts: [{ type: "text", text: input }], role: "user" })
     setInput("")
   }
 
@@ -32,7 +32,7 @@ export function GeminiChat() {
         aria-label="Ouvrir le chat avec notre assistant"
       >
         <div className="absolute inset-0 rounded-full bg-white opacity-0 transition-opacity duration-300 group-hover:opacity-20"></div>
-        <MessageCircle className="h-8 w-8 relative z-10 transition-transform duration-300 group-hover:-rotate-12" />
+        <Stethoscope className="h-8 w-8 relative z-10 transition-transform duration-300 group-hover:-rotate-12" />
         <span className="absolute right-0 top-0 flex h-4 w-4">
           <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-300 opacity-75"></span>
           <span className="relative inline-flex rounded-full h-4 w-4 bg-emerald-400 border-2 border-slate-900"></span>
@@ -48,7 +48,7 @@ export function GeminiChat() {
         <div className="absolute inset-0 bg-gradient-to-r from-[#126b43]/5 to-[#188a56]/5"></div>
         <div className="relative z-10 flex items-center gap-4">
           <div className="relative flex h-12 w-12 items-center justify-center rounded-full bg-gradient-to-br from-[#126b43]/10 to-[#188a56]/10 border border-[#126b43]/20 shadow-[0_0_15px_rgba(18,107,67,0.1)]">
-            <Bot className="h-6 w-6 text-[#126b43]" />
+            <Stethoscope className="h-6 w-6 text-[#126b43]" />
             <span className="absolute bottom-0 right-0 block h-3.5 w-3.5 rounded-full bg-[#20c977] ring-2 ring-white shadow-[0_0_10px_rgba(32,201,119,0.5)]" />
           </div>
           <div>
@@ -71,7 +71,7 @@ export function GeminiChat() {
         {messages.length === 0 && (
           <div className="mt-12 flex flex-col items-center justify-center space-y-5 text-center animate-in fade-in duration-700">
             <div className="flex h-20 w-20 items-center justify-center rounded-full bg-gradient-to-tr from-[#126b43]/10 to-[#20c977]/10 border border-[#126b43]/10 shadow-[0_0_30px_rgba(18,107,67,0.05)]">
-              <Bot className="h-10 w-10 text-[#126b43]" />
+              <Stethoscope className="h-10 w-10 text-[#126b43]" />
             </div>
             <p className="text-sm font-medium text-slate-500 max-w-[260px] leading-relaxed">
               Bonjour ! Je suis Maimouna, l'IA de la Clinique. Posez-moi vos questions, je suis à votre écoute 24h/24.
@@ -98,7 +98,7 @@ export function GeminiChat() {
                   : "bg-white border border-[#126b43]/5 text-slate-700 rounded-bl-sm"
               }`}
             >
-              {m.content || (m.parts && m.parts.map((p, i) => p.type === 'text' ? p.text : '').join('')) || JSON.stringify(m)}
+              {(m.parts && m.parts.map((p, i) => p.type === 'text' ? p.text : '').join('')) || JSON.stringify(m)}
             </div>
           </div>
         ))}
