@@ -6,7 +6,7 @@ import { MessageCircle, X, Send, Bot, Sparkles } from "lucide-react"
 
 export function GeminiChat() {
   const [isOpen, setIsOpen] = useState(false)
-  const { messages, input, handleInputChange, handleSubmit, isLoading, error } = useChat()
+  const { messages, input, setInput, handleSubmit, isLoading, error } = useChat()
   const messagesEndRef = useRef<HTMLDivElement>(null)
 
   // Auto-scroll to bottom
@@ -111,7 +111,7 @@ export function GeminiChat() {
         <div className="flex items-center gap-2">
           <input
             value={input}
-            onChange={handleInputChange}
+            onChange={(e) => setInput(e.target.value)}
             placeholder="Écrivez votre message..."
             className="flex-1 rounded-full border border-slate-200 bg-slate-50 py-3 pl-5 pr-4 text-[15px] text-slate-800 placeholder:text-slate-400 focus:bg-white focus:outline-none focus:ring-2 focus:ring-[#126b43]/30 transition-all shadow-inner"
           />
