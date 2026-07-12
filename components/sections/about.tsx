@@ -5,11 +5,11 @@ import { ShieldCheck, HeartHandshake, Languages, CreditCard, Stethoscope, BedDou
 
 export function About() {
   const servicesList = [
-    { label: "Consultations", desc: "Médecine générale et spécialisée", icon: Stethoscope },
-    { label: "Hospitalisation", desc: "Prise en charge complète", icon: BedDouble },
-    { label: "Imagerie médicale", desc: "Radiologie, échographie, scanner...", icon: ScanLine },
-    { label: "Laboratoire d'analyses", desc: "Analyses médicales fiables", icon: FlaskConical },
-    { label: "Urgences", desc: "Disponibles 24h/24 et 7j/7", icon: PhoneCall },
+    { label: "Consultations", desc: "Médecine générale et spécialisée", icon: Stethoscope, href: "/#specialites" },
+    { label: "Hospitalisation", desc: "Prise en charge complète", icon: BedDouble, href: "/#services" },
+    { label: "Imagerie médicale", desc: "Radiologie, échographie, scanner...", icon: ScanLine, href: "/#services" },
+    { label: "Laboratoire d'analyses", desc: "Analyses médicales fiables", icon: FlaskConical, href: "/#services" },
+    { label: "Urgences", desc: "Disponibles 24h/24 et 7j/7", icon: PhoneCall, href: "tel:+221338360533" },
   ]
 
   return (
@@ -107,7 +107,7 @@ export function About() {
                 </div>
               </div>
               <p className="text-xs text-slate-600 leading-relaxed mb-4">Rufisque, route des HLM, camp Xavier Lelong, Cité millionnaire.</p>
-              <Link href="#" className="text-xs font-bold text-[#126b43] hover:underline flex items-center gap-1 mt-auto">
+              <Link href="https://maps.google.com" target="_blank" rel="noopener noreferrer" className="text-xs font-bold text-[#126b43] hover:underline flex items-center gap-1 mt-auto w-fit">
                 Voir sur Google Maps <ArrowRight className="size-3" />
               </Link>
             </div>
@@ -118,7 +118,7 @@ export function About() {
             <h3 className="font-bold text-slate-900 mb-4">Nos services</h3>
             <div className="flex flex-col gap-2">
               {servicesList.map((service, index) => (
-                <div key={index} className="flex items-center gap-4 rounded-xl bg-slate-50 p-3 hover:bg-slate-100 transition-colors cursor-pointer border border-transparent hover:border-slate-200">
+                <Link key={index} href={service.href} className="flex items-center gap-4 rounded-xl bg-slate-50 p-3 hover:bg-slate-100 transition-colors cursor-pointer border border-transparent hover:border-slate-200">
                   <div className="flex size-10 shrink-0 items-center justify-center rounded-lg bg-green-50 text-[#126b43]">
                     <service.icon className="size-5" strokeWidth={1.5} />
                   </div>
@@ -127,7 +127,7 @@ export function About() {
                     <div className="text-[11px] text-slate-500 line-clamp-1">{service.desc}</div>
                   </div>
                   <ChevronRight className="size-4 text-slate-400" />
-                </div>
+                </Link>
               ))}
             </div>
           </div>
