@@ -1,7 +1,7 @@
 import { SiteHeader } from "@/components/site-header"
 import { SiteFooter } from "@/components/site-footer"
 import { Hero } from "@/components/sections/hero"
-import { Stats } from "@/components/sections/stats"
+
 import { About } from "@/components/sections/about"
 import { Specialties } from "@/components/sections/specialties"
 import { Insurances } from "@/components/sections/insurances"
@@ -13,7 +13,7 @@ export default function HomePage() {
       <SiteHeader />
       <main className="flex-1 w-full">
         <Hero />
-        <Stats />
+
         <About />
         <Specialties />
         <Insurances />

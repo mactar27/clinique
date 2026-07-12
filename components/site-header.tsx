@@ -7,12 +7,13 @@ import { Menu, X, Phone, CalendarPlus } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { useLanguage } from "@/components/language-provider"
 
-const navItems: { key: "about" | "specialties" | "insurances" | "news" | "contact"; href: string; label: string }[] = [
-  { key: "about", href: "/#a-propos", label: "L'établissement" },
-  { key: "specialties", href: "/#specialites", label: "Nos spécialités" },
-  { key: "insurances", href: "/#assurances", label: "Assurances" },
-  { key: "news", href: "/#actualites", label: "Actualités" },
-  { key: "contact", href: "/#acces", label: "Accès & contact" },
+const navItems: { key: string; href: string; label: string }[] = [
+  { key: "home", href: "/", label: "Accueil" },
+  { key: "about", href: "/#a-propos", label: "À propos" },
+  { key: "services", href: "/#services", label: "Nos services" },
+  { key: "specialties", href: "/#specialites", label: "Spécialités" },
+  { key: "doctors", href: "/#medecins", label: "Médecins" },
+  { key: "contact", href: "/#acces", label: "Contact" },
 ]
 
 export function SiteHeader() {
@@ -20,78 +21,75 @@ export function SiteHeader() {
   const [open, setOpen] = useState(false)
 
   return (
-    <header className="sticky top-0 z-50 w-full border-b border-border bg-background/90 backdrop-blur">
-      <div className="mx-auto flex h-16 max-w-[1400px] items-center justify-between gap-4 px-4 lg:px-8">
-        <Link href="/" className="flex items-center gap-2 shrink-0" aria-label="Clinique MAIMOUNA — accueil">
-          <Image
-            src="/images/logo-clinique-maimouna.png"
-            alt="Logo Clinique MAIMOUNA"
-            width={150}
-            height={44}
-            className="h-10 w-auto object-contain"
-            priority
-          />
-        </Link>
+    <header className="sticky top-0 z-50 w-full bg-white border-b border-border shadow-sm">
+      <div className="mx-auto flex h-20 max-w-[1400px] items-center justify-between gap-4 px-4 lg:px-8">
+        <div className="flex w-full items-center justify-between lg:w-auto">
+          <Link href="/" className="flex items-center gap-2 shrink-0" aria-label="Clinique MAIMOUNA — accueil">
+            <Image
+              src="/images/logo-clinique-maimouna.png"
+              alt="Logo Clinique MAIMOUNA"
+              width={160}
+              height={50}
+              className="h-12 w-auto object-contain"
+              priority
+            />
+          </Link>
+          <button
+            type="button"
+            className="inline-flex size-10 items-center justify-center rounded-md text-foreground lg:hidden"
+            onClick={() => setOpen((v) => !v)}
+            aria-label={open ? "Fermer le menu" : "Ouvrir le menu"}
+            aria-expanded={open}
+          >
+            {open ? <X className="size-6" /> : <Menu className="size-6" />}
+          </button>
+        </div>
 
-        <nav className="hidden items-center gap-1 lg:flex" aria-label="Navigation principale">
+        <nav className="hidden items-center justify-center flex-1 lg:flex" aria-label="Navigation principale">
           {navItems.map((item) => (
             <Link
               key={item.key}
               href={item.href}
-              className="rounded-full px-4 py-2 text-sm font-semibold text-foreground transition-colors hover:bg-secondary"
+              className="px-4 py-2 text-sm font-semibold text-slate-800 transition-colors hover:text-[#126b43]"
             >
               {item.label}
             </Link>
           ))}
         </nav>
 
-        <div className="hidden items-center gap-3 lg:flex">
-          <Button render={<a href="tel:+221338360533" />} variant="destructive" size="sm" className="gap-2 animate-pulse bg-[#f04f4f] text-white hover:bg-red-600 rounded-full px-5 py-5 text-sm font-semibold shadow-md">
-            <Phone className="size-4" aria-hidden="true" />
-            Urgences : +221 33 836 05 33
+        <div className="hidden items-center gap-4 lg:flex shrink-0">
+          <Button render={<a href="tel:+221338364545" />} variant="outline" size="sm" className="gap-2 rounded-full px-5 py-5 text-sm font-semibold border-slate-200 text-slate-800 hover:bg-slate-50">
+            <Phone className="size-4 text-[#126b43]" aria-hidden="true" />
+            33 836 45 45
           </Button>
-          <Button render={<a href="tel:+221338360533" />} variant="outline" size="sm" className="gap-2 rounded-full px-5 py-5 text-sm font-semibold border-border hover:bg-secondary">
-            <Phone className="size-4" aria-hidden="true" />
-            Appeler
-          </Button>
-          <Button render={<Link href="/reservation" />} size="sm" className="gap-2 bg-[#126b43] text-white hover:bg-[#0c4e30] rounded-full px-5 py-5 text-sm font-semibold shadow-md">
+          <Button render={<Link href="/reservation" />} size="sm" className="gap-2 bg-[#0c5936] text-white hover:bg-[#09452a] rounded-full px-6 py-5 text-sm font-semibold shadow-md">
             <CalendarPlus className="size-4" aria-hidden="true" />
-            Prendre rendez-vous
+            Réserver en ligne
           </Button>
         </div>
-
-        <button
-          type="button"
-          className="inline-flex size-10 items-center justify-center rounded-md text-foreground lg:hidden"
-          onClick={() => setOpen((v) => !v)}
-          aria-label={open ? "Fermer le menu" : "Ouvrir le menu"}
-          aria-expanded={open}
-        >
-          {open ? <X className="size-6" /> : <Menu className="size-6" />}
-        </button>
       </div>
 
       {open && (
-        <div className="border-t border-border bg-background lg:hidden">
+        <div className="border-t border-border bg-white lg:hidden">
           <nav className="mx-auto flex max-w-6xl flex-col gap-1 px-4 py-4" aria-label="Navigation mobile">
             {navItems.map((item) => (
               <Link
                 key={item.key}
                 href={item.href}
                 onClick={() => setOpen(false)}
-                className="rounded-md px-3 py-2 text-base font-medium text-foreground hover:bg-secondary"
+                className="rounded-md px-3 py-3 text-base font-medium text-slate-800 hover:bg-slate-50"
               >
                 {item.label}
               </Link>
             ))}
-            <div className="mt-2 flex flex-col gap-3">
-              <Button render={<a href="tel:+221338360533" />} variant="destructive" className="gap-1.5 animate-pulse bg-red-600 text-white hover:bg-red-700 w-full justify-center">
-                <Phone className="size-4" aria-hidden="true" />
-                Urgences: +221 33 836 05 33
+            <div className="mt-4 flex flex-col gap-3">
+              <Button render={<a href="tel:+221338364545" />} variant="outline" className="gap-2 w-full justify-center border-slate-200 py-6">
+                <Phone className="size-4 text-[#126b43]" aria-hidden="true" />
+                33 836 45 45
               </Button>
-              <Button render={<Link href="/reservation" onClick={() => setOpen(false)} />} className="gap-1.5 w-full justify-center">
+              <Button render={<Link href="/reservation" onClick={() => setOpen(false)} />} className="gap-2 w-full justify-center bg-[#0c5936] hover:bg-[#09452a] text-white py-6">
                 <CalendarPlus className="size-4" aria-hidden="true" />
-                {t("bookShort")}
+                Réserver en ligne
               </Button>
             </div>
           </nav>
@@ -100,3 +98,4 @@ export function SiteHeader() {
     </header>
   )
 }
+
