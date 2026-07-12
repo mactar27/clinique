@@ -6,7 +6,7 @@ import { MessageCircle, X, Send, Bot, Sparkles } from "lucide-react"
 
 export function GeminiChat() {
   const [isOpen, setIsOpen] = useState(false)
-  const { messages, input, handleInputChange, handleSubmit, isLoading } = useChat()
+  const { messages, input, handleInputChange, handleSubmit, isLoading, error } = useChat()
   const messagesEndRef = useRef<HTMLDivElement>(null)
 
   // Auto-scroll to bottom
@@ -65,6 +65,12 @@ export function GeminiChat() {
             <p className="text-sm font-medium text-slate-500 max-w-[250px]">
               Bonjour ! Je suis l'intelligence artificielle de la Clinique. Je peux vous renseigner sur nos horaires, nos médecins et nos spécialités.
             </p>
+          </div>
+        )}
+        
+        {error && (
+          <div className="mt-2 p-3 text-sm text-red-600 bg-red-50 border border-red-200 rounded-xl">
+            Erreur: La clé API Gemini n'est pas configurée ou est invalide.
           </div>
         )}
         
