@@ -75,12 +75,18 @@ export default function AdminResultsPage() {
           </div>
 
           <div className="space-y-2">
-            <Label htmlFor="resultUrl">Lien du fichier (PDF)</Label>
-            <Input 
-              id="resultUrl" 
-              type="url"
-              value={formData.resultUrl} 
-              onChange={e => setFormData({ ...formData, resultUrl: e.target.value })}
+            <Label htmlFor="resultFile">Fichier PDF du résultat</Label>
+            <input 
+              id="resultFile" 
+              type="file"
+              accept=".pdf"
+              onChange={(e) => {
+                // Pour la démo, on simule l'upload en générant un faux lien
+                if (e.target.files && e.target.files.length > 0) {
+                  setFormData({ ...formData, resultUrl: `https://clinique-maimouna.sn/dossiers/${e.target.files[0].name}` })
+                }
+              }}
+              className="mt-2 block w-full text-sm text-gray-500 cursor-pointer file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:text-sm file:font-semibold file:bg-[#126b43]/10 file:text-[#126b43] hover:file:bg-[#126b43]/20 transition-all"
               required
             />
           </div>

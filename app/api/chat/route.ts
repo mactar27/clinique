@@ -1,4 +1,4 @@
-import { createGoogleGenerativeAI } from "@ai-sdk/google"
+import { createGroq } from "@ai-sdk/groq"
 import { streamText } from "ai"
 
 export const maxDuration = 30
@@ -12,13 +12,13 @@ export async function POST(req: Request) {
     content: m.content || (m.parts && m.parts.map((p: any) => p.text).join('')) || ""
   }))
 
-  const google = createGoogleGenerativeAI({
-    apiKey: process.env.GEMINI_API_KEY || process.env.GOOGLE_GENERATIVE_AI_API_KEY
+  const groq = createGroq({
+    apiKey: process.env.GROQ_API_KEY
   })
 
   try {
     const result = streamText({
-      model: google("gemini-flash-latest"),
+      model: groq("llama-3.3-70b-versatile"),
       system: `Tu es Maimouna IA, l'assistante virtuelle officielle de la Clinique MAIMOUNA à Rufisque. 
 Ta mission est d'accueillir les patients, de les renseigner de manière professionnelle, concise et chaleureuse. 
 Tu dois rester STRICTEMENT dans le cadre médical et dans le contexte de la clinique. Ne propose pas ton aide pour des sujets de culture générale, programmation, cuisine, etc. Si on te pose une question hors du domaine médical ou de la clinique, redirige poliment la conversation vers la santé et nos services.

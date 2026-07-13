@@ -1,9 +1,42 @@
 "use server"
 
 import { db } from "@/lib/db"
-import { appointments, notifications, testResults, patients } from "@/lib/db/schema"
+import { appointments, notifications, testResults, patients, staff } from "@/lib/db/schema"
 import { eq, desc } from "drizzle-orm"
 import { revalidatePath } from "next/cache"
+
+export async function getStaff() {
+  return await db.select().from(staff).orderBy(desc(staff.createdAt))
+}
+
+export async function addStaff(data: any) {
+  await db.insert(staff).values({
+    firstName: data.firstName,
+    lastName: data.lastName,
+    role: data.role,
+    specialty: data.specialty || null,
+    phone: data.phone,
+    email: data.email || null,
+    status: data.status,
+  })
+  revalidatePath("/admin/personnel")
+  return { success: true }
+}
+
+export async function updateStaff(id: string, data: any) {
+  await db.update(staff).set({
+    firstName: data.firstName,
+    lastName: data.lastName,
+    role: data.role,
+    specialty: data.specialty || null,
+    phone: data.phone,
+    email: data.email || null,
+    status: data.status,
+  }).where(eq(staff.id, id))
+  
+  revalidatePath("/admin/personnel")
+  return { success: true }
+}
 
 export async function getAppointments() {
   return await db.select().from(appointments).orderBy(desc(appointments.createdAt))
@@ -57,6 +90,14 @@ export async function addTestResult(data: {
     testName: data.testName,
     testDate: new Date(data.testDate),
     resultUrl: data.resultUrl
+  })
+
+  // Simuler l'envoi d'un SMS automatique au patient pour le prévenir
+  await db.insert(notifications).values({
+    appointmentId: null,
+    type: "SMS",
+    message: `Bonjour, vos résultats d'analyses (${data.testName}) sont disponibles. Rendez-vous sur le portail avec votre code secret: ${data.patientCode}`,
+    status: "sent"
   })
 
   revalidatePath("/admin/resultats")

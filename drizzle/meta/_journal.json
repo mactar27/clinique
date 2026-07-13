@@ -8,6 +8,20 @@
       "when": 1783810853022,
       "tag": "0000_curly_stranger",
       "breakpoints": true
+    },
+    {
+      "idx": 1,
+      "version": "5",
+      "when": 1783868787521,
+      "tag": "0001_dazzling_jack_power",
+      "breakpoints": true
+    },
+    {
+      "idx": 2,
+      "version": "5",
+      "when": 1783878879200,
+      "tag": "0002_milky_cammi",
+      "breakpoints": true
     }
   ]
 }

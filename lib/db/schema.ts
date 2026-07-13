@@ -51,7 +51,7 @@ export const notifications = mysqlTable("notifications", {
   id: varchar("id", { length: 36 })
     .primaryKey()
     .$defaultFn(() => crypto.randomUUID()),
-  appointmentId: varchar("appointment_id", { length: 36 }).notNull(),
+  appointmentId: varchar("appointment_id", { length: 36 }),
   type: varchar("type", { length: 20 }).notNull(), // 'SMS' ou 'WHATSAPP'
   message: text("message").notNull(),
   status: varchar("status", { length: 20 }).notNull().default("sent"),
@@ -64,3 +64,20 @@ export type TestResult = typeof testResults.$inferSelect
 export type NewTestResult = typeof testResults.$inferInsert
 export type Notification = typeof notifications.$inferSelect
 export type NewNotification = typeof notifications.$inferInsert
+
+export const staff = mysqlTable("staff", {
+  id: varchar("id", { length: 36 })
+    .primaryKey()
+    .$defaultFn(() => crypto.randomUUID()),
+  firstName: text("first_name").notNull(),
+  lastName: text("last_name").notNull(),
+  role: varchar("role", { length: 50 }).notNull(), // e.g., Médecin, Infirmier, Réceptionniste, Admin
+  specialty: text("specialty"), // e.g., Cardiologie (pour les médecins)
+  phone: text("phone").notNull(),
+  email: text("email"),
+  status: varchar("status", { length: 20 }).notNull().default("active"),
+  createdAt: timestamp("created_at").notNull().defaultNow(),
+})
+
+export type Staff = typeof staff.$inferSelect
+export type NewStaff = typeof staff.$inferInsert

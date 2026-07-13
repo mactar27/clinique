@@ -1,5 +1,6 @@
 import Link from "next/link"
-import { Calendar, LayoutDashboard, FileText, Settings, Stethoscope } from "lucide-react"
+import { Calendar, LayoutDashboard, FileText, Settings, Stethoscope, Users } from "lucide-react"
+import { logoutAdmin } from "@/app/actions/auth"
 
 export default function AdminLayout({ children }: { children: React.ReactNode }) {
   return (
@@ -21,6 +22,10 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
             <Calendar className="size-4" />
             Rendez-vous
           </Link>
+          <Link href="/admin/personnel" className="flex items-center gap-3 rounded-lg px-3 py-2 text-sm font-medium text-gray-700 hover:bg-gray-100">
+            <Users className="size-4" />
+            Personnel
+          </Link>
           <Link href="/admin/resultats" className="flex items-center gap-3 rounded-lg px-3 py-2 text-sm font-medium text-gray-700 hover:bg-gray-100">
             <FileText className="size-4" />
             Résultats
@@ -30,6 +35,15 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
             Paramètres
           </Link>
         </nav>
+        
+        <div className="p-4 border-t">
+          <form action={logoutAdmin}>
+            <button type="submit" className="flex w-full items-center gap-3 rounded-lg px-3 py-2 text-sm font-medium text-red-600 hover:bg-red-50">
+              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="size-4"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/><polyline points="16 17 21 12 16 7"/><line x1="21" x2="9" y1="12" y2="12"/></svg>
+              Déconnexion
+            </button>
+          </form>
+        </div>
       </aside>
 
       {/* Main Content */}
