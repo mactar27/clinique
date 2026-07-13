@@ -69,13 +69,35 @@ export function GeminiChat() {
       {/* Messages Area */}
       <div className="flex-1 overflow-y-auto p-6 space-y-6 scrollbar-thin scrollbar-thumb-[#126b43]/10 scrollbar-track-transparent">
         {messages.length === 0 && (
-          <div className="mt-12 flex flex-col items-center justify-center space-y-5 text-center animate-in fade-in duration-700">
-            <div className="flex h-20 w-20 items-center justify-center rounded-full bg-gradient-to-tr from-[#126b43]/10 to-[#20c977]/10 border border-[#126b43]/10 shadow-[0_0_30px_rgba(18,107,67,0.05)]">
-              <Stethoscope className="h-10 w-10 text-[#126b43]" />
+          <div className="mt-4 flex flex-col items-center justify-center space-y-6 text-center animate-in fade-in duration-700 w-full pb-4">
+            <div className="flex flex-col items-center space-y-3">
+              <div className="flex h-16 w-16 items-center justify-center rounded-full bg-gradient-to-tr from-[#126b43]/10 to-[#20c977]/10 border border-[#126b43]/10 shadow-[0_0_30px_rgba(18,107,67,0.05)]">
+                <Stethoscope className="h-8 w-8 text-[#126b43]" />
+              </div>
+              <p className="text-[15px] font-medium text-slate-700 max-w-[280px] leading-relaxed">
+                Bonjour 👋 Je suis Maimouna, l'IA de la Clinique. Comment puis-je vous aider aujourd'hui ?
+              </p>
             </div>
-            <p className="text-sm font-medium text-slate-500 max-w-[260px] leading-relaxed">
-              Bonjour ! Je suis Maimouna, l'IA de la Clinique. Posez-moi vos questions, je suis à votre écoute 24h/24.
-            </p>
+            
+            <div className="flex flex-col gap-2.5 w-full px-2">
+              {[
+                "Quelles sont vos spécialités ?",
+                "Demander un rendez-vous",
+                "Où êtes-vous situés ?",
+                "Quels sont vos tarifs ?"
+              ].map((suggestion, index) => (
+                <button
+                  key={index}
+                  onClick={() => {
+                    sendMessage({ parts: [{ type: "text", text: suggestion }], role: "user" })
+                  }}
+                  className="w-full text-left rounded-xl border border-[#126b43]/10 bg-white px-4 py-3.5 text-[14px] font-medium text-[#126b43] transition-all hover:bg-[#126b43] hover:text-white hover:shadow-md animate-in fade-in slide-in-from-bottom-2"
+                  style={{ animationDelay: `${150 * (index + 1)}ms`, animationFillMode: "both" }}
+                >
+                  {suggestion}
+                </button>
+              ))}
+            </div>
           </div>
         )}
         
